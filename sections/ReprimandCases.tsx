@@ -3,19 +3,16 @@
 import { useEffect, useState } from "react";
 
 const defaultText = `
-• Keyfiyyətli təhsil almaq hüququ.
-• Ədalətli və şəffaf qiymətləndirmə tələb etmək.
-• Elmi və ictimai fəaliyyətlərdə iştirak etmək.
-• Fikirlərini mədəni formada ifadə etmək.
+Bu bölmədə töhmət intizam tədbirinin tətbiq olunduğu hallar izah ediləcək.
 `;
 
-const Rights = () => {
+const ReprimandCases = () => {
   const [text, setText] = useState(defaultText.trim());
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const saved = localStorage.getItem("rightsText");
+    const saved = localStorage.getItem("reprimandCasesText");
     if (saved && saved.trim().length > 0) {
       setText(saved);
     }
@@ -23,10 +20,10 @@ const Rights = () => {
 
   return (
     <div className="section">
-      <h2>Tələbələrin hüquqları</h2>
+      <h2>Töhmətin edildiyi hallar</h2>
       <p style={{ whiteSpace: "pre-line" }}>{text}</p>
     </div>
   );
 };
 
-export default Rights;
+export default ReprimandCases;

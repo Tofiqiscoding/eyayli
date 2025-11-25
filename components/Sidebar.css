@@ -1,43 +1,80 @@
+/* ==== SIDEBAR KONTEYNER ==== */
 .sidebar {
   width: 230px;
   background: #ffffff;
   border-radius: 8px;
   padding: 12px;
   border: 1px solid #e5e7eb;
+
+  /* 🔽 Sidebar daxili scroll */
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+
+  /* Kölgə */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: all 0.3s ease;
 }
 
-.sidebar-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
+/* ==== SCROLL DESIGN ==== */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
 }
 
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #93b4ff;
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #5a82e6;
+}
+
+/* ==== BUTTONLAR ==== */
 .sidebar-item {
   width: 100%;
-  padding: 8px 10px;
-  background: #f9fafb;
+  padding: 10px;
+  margin-bottom: 6px;
   border: none;
   border-radius: 6px;
-  text-align: left;
+  background: #f1f5f9;
   cursor: pointer;
-  font-size: 13px;
-  color: #111827;
-  margin-bottom: 6px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.25s;
 }
 
 .sidebar-item:hover {
-  background: #e5e7eb;
+  background: #dfeaff;
 }
 
 .sidebar-item.active {
   background: #0b63c5;
   color: white;
+  font-weight: 600;
 }
 
-/* MOBILE */
+/* ==== RESPONSIVE ==== */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 190px;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
-    margin-bottom: 10px;
+    max-height: none;
+    overflow-y: visible;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-item {
+    text-align: center;
   }
 }

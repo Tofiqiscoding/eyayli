@@ -4,23 +4,36 @@ import { useState, useEffect } from "react";
 import "./admin.css";
 
 export default function AdminPage() {
-  // Login üçün statelar
+  // Login
   const [isLogged, setIsLogged] = useState(false);
   const [loginUser, setLoginUser] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  // Panel üçün statelar (bölmə mətnləri)
+  // Bölmə mətnləri
   const [uniText, setUniText] = useState("");
-  const [rightsText, setRightsText] = useState("");
-  const [dutiesText, setDutiesText] = useState("");
+  const [generalText, setGeneralText] = useState("");
+  const [rightsDutiesText, setRightsDutiesText] = useState("");
+  const [disciplineRespText, setDisciplineRespText] = useState("");
+  const [warningCasesText, setWarningCasesText] = useState("");
+  const [reprimandCasesText, setReprimandCasesText] = useState("");
+  const [severeReprimandCasesText, setSevereReprimandCasesText] = useState("");
+  const [expulsionCasesText, setExpulsionCasesText] = useState("");
+  const [disciplineProcedureText, setDisciplineProcedureText] = useState("");
+  const [libraryServiceRulesText, setLibraryServiceRulesText] = useState("");
+  const [libraryRightsDutiesText, setLibraryRightsDutiesText] = useState("");
+  const [readersRightsDutiesText, setReadersRightsDutiesText] = useState("");
+  const [encouragementText, setEncouragementText] = useState("");
+  const [scholarshipsText, setScholarshipsText] = useState("");
+  const [exchangeProgramsText, setExchangeProgramsText] = useState("");
+  const [studentLoanText, setStudentLoanText] = useState("");
+  const [socialSupportText, setSocialSupportText] = useState("");
   const [creditsText, setCreditsText] = useState("");
+  const [conceptsText, setConceptsText] = useState("");
   const [saved, setSaved] = useState(false);
 
-  // Login yoxlama
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (loginUser === "admin" && loginPass === "admin") {
       setIsLogged(true);
       setLoginError("");
@@ -31,47 +44,78 @@ export default function AdminPage() {
     }
   };
 
-  // Login olandan sonra localStorage-dan mövcud mətnləri oxu
   useEffect(() => {
     if (!isLogged) return;
     if (typeof window === "undefined") return;
 
-    const u = localStorage.getItem("uniText") || "";
-    const r = localStorage.getItem("rightsText") || "";
-    const d = localStorage.getItem("dutiesText") || "";
-    const c = localStorage.getItem("creditsText") || "";
-
-    setUniText(u);
-    setRightsText(r);
-    setDutiesText(d);
-    setCreditsText(c);
+    setUniText(localStorage.getItem("uniText") || "");
+    setGeneralText(localStorage.getItem("generalText") || "");
+    setRightsDutiesText(localStorage.getItem("rightsDutiesText") || "");
+    setDisciplineRespText(localStorage.getItem("disciplineRespText") || "");
+    setWarningCasesText(localStorage.getItem("warningCasesText") || "");
+    setReprimandCasesText(localStorage.getItem("reprimandCasesText") || "");
+    setSevereReprimandCasesText(
+      localStorage.getItem("severeReprimandCasesText") || ""
+    );
+    setExpulsionCasesText(localStorage.getItem("expulsionCasesText") || "");
+    setDisciplineProcedureText(
+      localStorage.getItem("disciplineProcedureText") || ""
+    );
+    setLibraryServiceRulesText(
+      localStorage.getItem("libraryServiceRulesText") || ""
+    );
+    setLibraryRightsDutiesText(
+      localStorage.getItem("libraryRightsDutiesText") || ""
+    );
+    setReadersRightsDutiesText(
+      localStorage.getItem("readersRightsDutiesText") || ""
+    );
+    setEncouragementText(localStorage.getItem("encouragementText") || "");
+    setScholarshipsText(localStorage.getItem("scholarshipsText") || "");
+    setExchangeProgramsText(
+      localStorage.getItem("exchangeProgramsText") || ""
+    );
+    setStudentLoanText(localStorage.getItem("studentLoanText") || "");
+    setSocialSupportText(localStorage.getItem("socialSupportText") || "");
+    setCreditsText(localStorage.getItem("creditsText") || "");
+    setConceptsText(localStorage.getItem("conceptsText") || "");
   }, [isLogged]);
 
-  // Tək sahəni yadda saxla (boşdursa sil, yoxsa tam olaraq yaz)
   const saveField = (key: string, value: string) => {
     if (typeof window === "undefined") return;
     const trimmed = value.trim();
-
     if (trimmed === "") {
-      // Boş qoyublarsa, localStorage-dan sil
       localStorage.removeItem(key);
     } else {
       localStorage.setItem(key, trimmed);
     }
   };
 
-  // Hamısını yadda saxla
   const handleSave = () => {
     saveField("uniText", uniText);
-    saveField("rightsText", rightsText);
-    saveField("dutiesText", dutiesText);
+    saveField("generalText", generalText);
+    saveField("rightsDutiesText", rightsDutiesText);
+    saveField("disciplineRespText", disciplineRespText);
+    saveField("warningCasesText", warningCasesText);
+    saveField("reprimandCasesText", reprimandCasesText);
+    saveField("severeReprimandCasesText", severeReprimandCasesText);
+    saveField("expulsionCasesText", expulsionCasesText);
+    saveField("disciplineProcedureText", disciplineProcedureText);
+    saveField("libraryServiceRulesText", libraryServiceRulesText);
+    saveField("libraryRightsDutiesText", libraryRightsDutiesText);
+    saveField("readersRightsDutiesText", readersRightsDutiesText);
+    saveField("encouragementText", encouragementText);
+    saveField("scholarshipsText", scholarshipsText);
+    saveField("exchangeProgramsText", exchangeProgramsText);
+    saveField("studentLoanText", studentLoanText);
+    saveField("socialSupportText", socialSupportText);
     saveField("creditsText", creditsText);
+    saveField("conceptsText", conceptsText);
 
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
 
-  // Login olmayıbsa – yalnız login formu göstər
   if (!isLogged) {
     return (
       <section className="admin-wrapper">
@@ -118,62 +162,220 @@ export default function AdminPage() {
     );
   }
 
-  // Login olunubsa – admin paneli göstər
   return (
     <section className="admin-wrapper">
       <h2 className="admin-title">Admin panel</h2>
       <p className="admin-note">
-        Buradan əsas səhifədə görünən mətnləri <b>birbaşa düzəldə</b> və{" "}
-        <b>silmə</b> edə bilərsən. Boş buraxsan, həmin bölmə üzrə localStorage
-        silinəcək və komponentdə default mətn qalacaq.
+        Bütün bölmə mətnlərini buradan birbaşa düzəldə bilərsən. Boş buraxdığın
+        sahələr üçün localStorage təmizlənəcək və saytın özündə default mətn görünəcək.
       </p>
 
       <div className="admin-form">
-        {/* Universitet haqqında */}
         <div className="admin-group">
           <label className="admin-label">Universitet haqqında</label>
           <textarea
             value={uniText}
             onChange={(e) => setUniText(e.target.value)}
-            rows={4}
+            rows={3}
             className="admin-textarea"
-            placeholder="Universitet haqqında mətni bura yaz..."
           />
         </div>
 
-        {/* Hüquqlar */}
         <div className="admin-group">
-          <label className="admin-label">Tələbələrin hüquqları</label>
+          <label className="admin-label">Ümumi müddəalar</label>
           <textarea
-            value={rightsText}
-            onChange={(e) => setRightsText(e.target.value)}
-            rows={4}
+            value={generalText}
+            onChange={(e) => setGeneralText(e.target.value)}
+            rows={3}
             className="admin-textarea"
-            placeholder="Hüquqlar haqqında mətni bura yaz..."
           />
         </div>
 
-        {/* Vəzifələr */}
         <div className="admin-group">
-          <label className="admin-label">Tələbələrin vəzifələri</label>
+          <label className="admin-label">Tələbənin hüquq və vəzifələri</label>
           <textarea
-            value={dutiesText}
-            onChange={(e) => setDutiesText(e.target.value)}
+            value={rightsDutiesText}
+            onChange={(e) => setRightsDutiesText(e.target.value)}
             rows={4}
             className="admin-textarea"
-            placeholder="Vəzifələr haqqında mətni bura yaz..."
           />
         </div>
 
-        {/* Kredit sistemi */}
+        <div className="admin-group">
+          <label className="admin-label">
+            İntizamın pozulmasına görə məsuliyyət
+          </label>
+          <textarea
+            value={disciplineRespText}
+            onChange={(e) => setDisciplineRespText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Xəbərdarlığın edildiyi hallar</label>
+          <textarea
+            value={warningCasesText}
+            onChange={(e) => setWarningCasesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Töhmətin edildiyi hallar</label>
+          <textarea
+            value={reprimandCasesText}
+            onChange={(e) => setReprimandCasesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Sonuncu xəbərdarlıq / şiddətli töhmət
+          </label>
+          <textarea
+            value={severeReprimandCasesText}
+            onChange={(e) => setSevereReprimandCasesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Universitetdən xaric edilmə halları
+          </label>
+          <textarea
+            value={expulsionCasesText}
+            onChange={(e) => setExpulsionCasesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            İntizam məsuliyyətinə cəlb etmə proseduru
+          </label>
+          <textarea
+            value={disciplineProcedureText}
+            onChange={(e) => setDisciplineProcedureText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Kitabxana xidməti qaydaları
+          </label>
+          <textarea
+            value={libraryServiceRulesText}
+            onChange={(e) => setLibraryServiceRulesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Kitabxananın hüquq və vəzifələri
+          </label>
+          <textarea
+            value={libraryRightsDutiesText}
+            onChange={(e) => setLibraryRightsDutiesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Oxucuların hüquq və vəzifələri
+          </label>
+          <textarea
+            value={readersRightsDutiesText}
+            onChange={(e) => setReadersRightsDutiesText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Təhsildə müvəffəqiyyətə görə həvəsləndirmə
+          </label>
+          <textarea
+            value={encouragementText}
+            onChange={(e) => setEncouragementText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Təqaüdlərin təyin olunması</label>
+          <textarea
+            value={scholarshipsText}
+            onChange={(e) => setScholarshipsText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Mübadilə proqramları</label>
+          <textarea
+            value={exchangeProgramsText}
+            onChange={(e) => setExchangeProgramsText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Təhsil tələbə krediti</label>
+          <textarea
+            value={studentLoanText}
+            onChange={(e) => setStudentLoanText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">
+            Sosial həssas qruplar üçün təhsil haqqı dəstəyi
+          </label>
+          <textarea
+            value={socialSupportText}
+            onChange={(e) => setSocialSupportText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
+          />
+        </div>
+
         <div className="admin-group">
           <label className="admin-label">Kredit sistemi</label>
           <textarea
             value={creditsText}
             onChange={(e) => setCreditsText(e.target.value)}
-            rows={4}
+            rows={3}
             className="admin-textarea"
-            placeholder="Kredit sistemi haqqında mətni bura yaz..."
+          />
+        </div>
+
+        <div className="admin-group">
+          <label className="admin-label">Əsas anlayışlar</label>
+          <textarea
+            value={conceptsText}
+            onChange={(e) => setConceptsText(e.target.value)}
+            rows={3}
+            className="admin-textarea"
           />
         </div>
 
@@ -182,9 +384,7 @@ export default function AdminPage() {
         </button>
 
         {saved && (
-          <span className="admin-saved">
-            Dəyişikliklər yadda saxlanıldı.
-          </span>
+          <span className="admin-saved">Dəyişikliklər yadda saxlanıldı.</span>
         )}
       </div>
     </section>
