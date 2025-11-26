@@ -5,6 +5,22 @@ import "./Sidebar.css";
 export type SectionKey =
   | "uni"
   | "general"
+  | "studentCentered"
+  | "teachingOrg"
+  | "individualPlan"
+  | "summerSemester"
+  | "lectureAssessment"
+  | "seminarLabAssessment"
+  | "colloquiumAssessment"
+  | "examRules"
+  | "theoreticalCriteria"
+  | "practicalCriteria"
+  | "practicalTasks"
+  | "practiceOrganization"
+  | "changeSpecialty"
+  | "temporarySuspension"
+  | "institutionExpulsion"
+  | "reinstatement"
   | "rightsDuties"
   | "disciplineResp"
   | "warningCases"
@@ -31,10 +47,6 @@ interface Props {
 export default function Sidebar({ activeSection, onChange }: Props) {
   return (
     <aside className="sidebar">
-
-      {/* Bu hissə silindi:
-      <h3 className="sidebar-title">Menyu</h3>  */}
-
       <button
         className={activeSection === "uni" ? "sidebar-item active" : "sidebar-item"}
         onClick={() => onChange("uni")}
@@ -49,6 +61,157 @@ export default function Sidebar({ activeSection, onChange }: Props) {
         Ümumi müddəalar
       </button>
 
+      <button
+        className={
+          activeSection === "studentCentered" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("studentCentered")}
+      >
+        Telebəyönümlü təhsil sistemi
+      </button>
+
+      <button
+        className={activeSection === "teachingOrg" ? "sidebar-item active" : "sidebar-item"}
+        onClick={() => onChange("teachingOrg")}
+      >
+        Tədrisin təşkili
+      </button>
+
+      <button
+        className={activeSection === "individualPlan" ? "sidebar-item active" : "sidebar-item"}
+        onClick={() => onChange("individualPlan")}
+      >
+        Fərdi tədris planı
+      </button>
+
+      <button
+        className={
+          activeSection === "summerSemester" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("summerSemester")}
+      >
+        Yay semestrinin təşkili
+      </button>
+
+      {/* Qiymətləndirmə və imtahan blokları */}
+      <button
+        className={
+          activeSection === "lectureAssessment" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("lectureAssessment")}
+      >
+        Mühazirə iştirak & tematik tapşırıqlar
+      </button>
+
+      <button
+        className={
+          activeSection === "seminarLabAssessment"
+            ? "sidebar-item active"
+            : "sidebar-item"
+        }
+        onClick={() => onChange("seminarLabAssessment")}
+      >
+        Seminar / laboratoriya & layihələr
+      </button>
+
+      <button
+        className={
+          activeSection === "colloquiumAssessment"
+            ? "sidebar-item active"
+            : "sidebar-item"
+        }
+        onClick={() => onChange("colloquiumAssessment")}
+      >
+        Kollokvium balları
+      </button>
+
+      <button
+        className={activeSection === "examRules" ? "sidebar-item active" : "sidebar-item"}
+        onClick={() => onChange("examRules")}
+      >
+        İmtahanların təşkili
+      </button>
+
+      <button
+        className={
+          activeSection === "theoreticalCriteria" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("theoreticalCriteria")}
+      >
+        Nəzəri sual meyarları
+      </button>
+
+      <button
+        className={
+          activeSection === "practicalCriteria" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("practicalCriteria")}
+      >
+        Praktiki sual meyarları
+      </button>
+
+      <button
+        className={
+          activeSection === "practicalTasks" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("practicalTasks")}
+      >
+        Praktiki tapşırıqların qiymətləndirilməsi
+      </button>
+
+      <button
+        className={
+          activeSection === "practiceOrganization"
+            ? "sidebar-item active"
+            : "sidebar-item"
+        }
+        onClick={() => onChange("practiceOrganization")}
+      >
+        Təcrübənin təşkili
+      </button>
+
+      {/* Tələbənin status dəyişikliyi blokları */}
+      <button
+        className={
+          activeSection === "changeSpecialty" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("changeSpecialty")}
+      >
+        İxtisas / təhsil forması dəyişikliyi
+      </button>
+
+      <button
+        className={
+          activeSection === "temporarySuspension"
+            ? "sidebar-item active"
+            : "sidebar-item"
+        }
+        onClick={() => onChange("temporarySuspension")}
+      >
+        Təhsilin müvəqqəti dayandırılması
+      </button>
+
+      <button
+        className={
+          activeSection === "institutionExpulsion"
+            ? "sidebar-item active"
+            : "sidebar-item"
+        }
+        onClick={() => onChange("institutionExpulsion")}
+      >
+        Təhsil müəssisəsindən xaric olma
+      </button>
+
+      <button
+        className={
+          activeSection === "reinstatement" ? "sidebar-item active" : "sidebar-item"
+        }
+        onClick={() => onChange("reinstatement")}
+      >
+        Təhsil müəssisəsinə bərpa
+      </button>
+
+      {/* Qalan bölmələr */}
       <button
         className={activeSection === "rightsDuties" ? "sidebar-item active" : "sidebar-item"}
         onClick={() => onChange("rightsDuties")}

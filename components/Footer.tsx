@@ -3,7 +3,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      © 2025 InnoTech — Bütün hüquqlar qorunur.
+      © 2025 InnoTek — Bütün hüquqlar qorunur.
     </footer>
   );
 };

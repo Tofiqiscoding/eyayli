@@ -1,21 +1,27 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import ClientShell from "./ClientShell";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Inter } from "next/font/google";
 
-export const metadata: Metadata = {
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+export const metadata = {
   title: "Universitet Kitabı",
   description: "Universitet portalı",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="az">
-      <body>
-        <ClientShell>{children}</ClientShell>
+      <body className={inter.className}>
+        <div className="app-shell">
+          <Header />
+          <main className="app-main">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

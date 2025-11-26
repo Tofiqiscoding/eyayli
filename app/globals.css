@@ -1,4 +1,4 @@
-/* RESET */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,14 +17,14 @@ body {
   color: #1f2937;
 }
 
-/* Layout: header yuxarıda, footer ən altda */
+
 .app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Səhifə dəyişəndə yumşaq animasiya */
+
 .app-main {
   flex: 1;
   animation: pageFadeIn 0.4s ease-out;
@@ -41,7 +41,7 @@ body {
   }
 }
 
-/* Haqqında / Əlaqə bölmələri */
+
 .info-section {
   margin: 20px;
   padding: 18px 20px;
@@ -136,5 +136,31 @@ body {
     margin: 10px;
     padding: 12px 14px;
   }
+}
+/* Baza layout – footer həmişə altda olsun */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.app-shell {
+  min-height: 100vh;        
+  display: flex;
+  flex-direction: column;
+}
+
+
+.app-main {
+  flex: 1;                  
+}
+
+
+.footer {
+  position: relative;
+  z-index: 2000;
 }
 
