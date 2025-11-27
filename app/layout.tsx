@@ -1,4 +1,6 @@
 import "./globals.css";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Inter } from "next/font/google";
@@ -13,7 +15,11 @@ export const metadata = {
   description: "Universitet portalı",
 };
 
-export default function RootLayout({ children }) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }:RootLayoutProps) {
   return (
     <html lang="az">
       <body className={inter.className}>

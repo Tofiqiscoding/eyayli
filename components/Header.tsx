@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import "./Header.css";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="header">
-      {/* Üst hissə: logo + başlıq */}
       <div className="header-top">
         <div className="header-logo-wrap">
           
-          <img
-            src=""
+          <Image
+            src="/bbulogo.png"
             alt="Bakı Biznes Universiteti"
+            width={80}
+            height={80}
             className="header-logo-img"
           />
           <div className="header-title-block">
@@ -22,7 +24,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Naviqasiya – ortada dursun */}
       <nav className="header-nav">
         <Link href="/" className="nav-link">
           Homepage
