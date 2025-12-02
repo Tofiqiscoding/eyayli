@@ -10,16 +10,16 @@
   width: 100%;
   padding: 12px 24px;
 
-  background: var(--text-color-light); 
+  
   color: var(--text-color-dark);
-  box-shadow: 0 1px 6px rgba(15, 23, 42, 0.1); 
+  
 }
 
 .header-content-wrap {
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  max-width: 1200px; 
+  max-width: 1350px; 
   margin: 0 auto;
 }
 
@@ -43,14 +43,14 @@
 }
 
 .university-subtitle {
-  font-size: 13px;
+  font-size: 24px;
   color: var(--primary-color); 
   opacity: 0.9;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .main-title {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text-color-dark);
 }
@@ -128,6 +128,15 @@
     margin-top: 6px;
     border-top: 1px solid var(--border-color); /* Ayırıcı xətt əlavə etmək */
     padding-top: 8px;
+    
+    gap: 30px;
+    display: flex;
+    /* background-color: white; */
+    border-radius: 18px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav-item {

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Sidebar, { SectionKey } from "../components/Sidebar";
+import { TextSearch } from 'lucide-react';
 
 import "../sections/Sections.css";
 
@@ -169,7 +170,7 @@ export default function HomePage() {
           </button>
 
           <div className="search-box">
-            <span className="search-icon">🔍</span>
+            <span className="search-icon"><TextSearch /></span>
             <input
               type="text"
               placeholder="Bölmə adı üzrə axtar..."

@@ -12,18 +12,18 @@ type HeaderProps = {
 export default function Header({ onNavigate }: HeaderProps) {
   return (
     <header className="site-header">
-      <div className="header-content-wrap">
+   <div className="header-content-wrap">
         {/* Logo və Başlıq Bloku */}
         <div className="logo-block">
           <Image
-            src="/bbulogo.png"
+            src="/bbu_logo.png"
             alt="Bakı Biznes Universiteti"
             width={80}
             height={80}
             className="logo-image"
             priority
+            style={{ backgroundColor: 'transparent' }}
           />
-
           <div className="title-text-block">
             <span className="university-subtitle">Bakı Biznes Universiteti</span>
             <span className="main-title">Yaddaş Kitabçası</span>
@@ -36,7 +36,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             className="nav-item"
             onClick={() => onNavigate("home")}
           >
-            Homepage
+            Ana Səhifə
           </button>
 
           <button
