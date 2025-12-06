@@ -54,7 +54,7 @@ export default function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (loginUser === "admin" && loginPass === "admin") {
+    if (loginUser === "admin" && loginPass === "admin123") {
       setIsLogged(true);
       setLoginError("");
       setLoginUser("");
