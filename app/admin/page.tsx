@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import "./admin.css";
 
+// API URL
+const API_URL = "http://localhost:5013/api/university";
+
 export default function AdminPage() {
   // Login
   const [isLogged, setIsLogged] = useState(false);
@@ -64,132 +67,137 @@ export default function AdminPage() {
     }
   };
 
-  useEffect(() => {
-    if (!isLogged) return;
-    if (typeof window === "undefined") return;
-
-    setUniText(localStorage.getItem("uniText") || "");
-    setGeneralText(localStorage.getItem("generalText") || "");
-    setStudentCenteredText(localStorage.getItem("studentCenteredText") || "");
-    setTeachingOrgText(localStorage.getItem("teachingOrgText") || "");
-    setIndividualPlanText(localStorage.getItem("individualPlanText") || "");
-    setSummerSemesterText(localStorage.getItem("summerSemesterText") || "");
-
-    setLectureAssessmentText(
-      localStorage.getItem("lectureAssessmentText") || ""
-    );
-    setSeminarLabAssessmentText(
-      localStorage.getItem("seminarLabAssessmentText") || ""
-    );
-    setColloquiumAssessmentText(
-      localStorage.getItem("colloquiumAssessmentText") || ""
-    );
-
-    setExamRulesText(localStorage.getItem("examRulesText") || "");
-    setTheoreticalCriteriaText(
-      localStorage.getItem("theoreticalCriteriaText") || ""
-    );
-    setPracticalCriteriaText(
-      localStorage.getItem("practicalCriteriaText") || ""
-    );
-    setPracticalTasksText(localStorage.getItem("practicalTasksText") || "");
-    setPracticeOrganizationText(
-      localStorage.getItem("practiceOrganizationText") || ""
-    );
-
-    setChangeSpecialtyText(localStorage.getItem("changeSpecialtyText") || "");
-    setTemporarySuspensionText(
-      localStorage.getItem("temporarySuspensionText") || ""
-    );
-    setInstitutionExpulsionText(
-      localStorage.getItem("institutionExpulsionText") || ""
-    );
-    setReinstatementText(localStorage.getItem("reinstatementText") || "");
-
-    setRightsDutiesText(localStorage.getItem("rightsDutiesText") || "");
-    setDisciplineRespText(localStorage.getItem("disciplineRespText") || "");
-    setWarningCasesText(localStorage.getItem("warningCasesText") || "");
-    setReprimandCasesText(localStorage.getItem("reprimandCasesText") || "");
-    setSevereReprimandCasesText(
-      localStorage.getItem("severeReprimandCasesText") || ""
-    );
-    setExpulsionCasesText(localStorage.getItem("expulsionCasesText") || "");
-    setDisciplineProcedureText(
-      localStorage.getItem("disciplineProcedureText") || ""
-    );
-    setLibraryServiceRulesText(
-      localStorage.getItem("libraryServiceRulesText") || ""
-    );
-    setLibraryRightsDutiesText(
-      localStorage.getItem("libraryRightsDutiesText") || ""
-    );
-    setReadersRightsDutiesText(
-      localStorage.getItem("readersRightsDutiesText") || ""
-    );
-    setEncouragementText(localStorage.getItem("encouragementText") || "");
-    setScholarshipsText(localStorage.getItem("scholarshipsText") || "");
-    setExchangeProgramsText(
-      localStorage.getItem("exchangeProgramsText") || ""
-    );
-    setStudentLoanText(localStorage.getItem("studentLoanText") || "");
-    setSocialSupportText(localStorage.getItem("socialSupportText") || "");
-    setCreditsText(localStorage.getItem("creditsText") || "");
-    setConceptsText(localStorage.getItem("conceptsText") || "");
-  }, [isLogged]);
-
-  const saveField = (key: string, value: string) => {
-    if (typeof window === "undefined") return;
-    const trimmed = value.trim();
-    if (trimmed === "") {
-      localStorage.removeItem(key);
-    } else {
-      localStorage.setItem(key, trimmed);
+  // API-dən məlumat yüklə
+  const loadFromAPI = async () => {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      
+      // State-ləri doldur
+      setUniText(data.aboutUniversity || "");
+      setGeneralText(data.generalTerms || "");
+      setStudentCenteredText(data.studentOrientedSystem || "");
+      setTeachingOrgText(data.courseOrganization || "");
+      setIndividualPlanText(data.individualCurriculum || "");
+      setSummerSemesterText(data.summerSemester || "");
+      
+      setLectureAssessmentText(data.lectureAssessment || "");
+      setSeminarLabAssessmentText(data.seminarLabAssessment || "");
+      setColloquiumAssessmentText(data.colloquiumAssessment || "");
+      
+      setExamRulesText(data.examRules || "");
+      setTheoreticalCriteriaText(data.theoreticalCriteria || "");
+      setPracticalCriteriaText(data.practicalCriteria || "");
+      setPracticalTasksText(data.practicalTasks || "");
+      setPracticeOrganizationText(data.practiceOrganization || "");
+      
+      setChangeSpecialtyText(data.changeSpecialty || "");
+      setTemporarySuspensionText(data.temporarySuspension || "");
+      setInstitutionExpulsionText(data.institutionExpulsion || "");
+      setReinstatementText(data.reinstatement || "");
+      
+      setRightsDutiesText(data.rightsDuties || "");
+      setDisciplineRespText(data.disciplineResp || "");
+      setWarningCasesText(data.warningCases || "");
+      setReprimandCasesText(data.reprimandCases || "");
+      setSevereReprimandCasesText(data.severeReprimandCases || "");
+      setExpulsionCasesText(data.expulsionCases || "");
+      setDisciplineProcedureText(data.disciplineProcedure || "");
+      
+      setLibraryServiceRulesText(data.libraryServiceRules || "");
+      setLibraryRightsDutiesText(data.libraryRightsDuties || "");
+      setReadersRightsDutiesText(data.readersRightsDuties || "");
+      
+      setEncouragementText(data.encouragement || "");
+      setScholarshipsText(data.scholarships || "");
+      setExchangeProgramsText(data.exchangePrograms || "");
+      setStudentLoanText(data.studentLoan || "");
+      setSocialSupportText(data.socialSupport || "");
+      
+      setCreditsText(data.credits || "");
+      setConceptsText(data.concepts || "");
+      
+      console.log("✅ Məlumatlar API-dən yükləndi");
+    } catch (error) {
+      console.error("❌ Yükləmə xətası:", error);
     }
   };
 
-  const handleSave = () => {
-    saveField("uniText", uniText);
-    saveField("generalText", generalText);
-    saveField("studentCenteredText", studentCenteredText);
-    saveField("teachingOrgText", teachingOrgText);
-    saveField("individualPlanText", individualPlanText);
-    saveField("summerSemesterText", summerSemesterText);
+  // Login olanda məlumatları yüklə
+  useEffect(() => {
+    if (!isLogged) return;
+    loadFromAPI();
+  }, [isLogged]);
 
-    saveField("lectureAssessmentText", lectureAssessmentText);
-    saveField("seminarLabAssessmentText", seminarLabAssessmentText);
-    saveField("colloquiumAssessmentText", colloquiumAssessmentText);
+  // Saxlama funksiyası
+  const handleSave = async () => {
+    try {
+      const data = {
+        aboutUniversity: uniText,
+        generalTerms: generalText,
+        studentOrientedSystem: studentCenteredText,
+        courseOrganization: teachingOrgText,
+        individualCurriculum: individualPlanText,
+        summerSemester: summerSemesterText,
+        
+        lectureAssessment: lectureAssessmentText,
+        seminarLabAssessment: seminarLabAssessmentText,
+        colloquiumAssessment: colloquiumAssessmentText,
+        
+        examRules: examRulesText,
+        theoreticalCriteria: theoreticalCriteriaText,
+        practicalCriteria: practicalCriteriaText,
+        practicalTasks: practicalTasksText,
+        practiceOrganization: practiceOrganizationText,
+        
+        changeSpecialty: changeSpecialtyText,
+        temporarySuspension: temporarySuspensionText,
+        institutionExpulsion: institutionExpulsionText,
+        reinstatement: reinstatementText,
+        
+        rightsDuties: rightsDutiesText,
+        disciplineResp: disciplineRespText,
+        warningCases: warningCasesText,
+        reprimandCases: reprimandCasesText,
+        severeReprimandCases: severeReprimandCasesText,
+        expulsionCases: expulsionCasesText,
+        disciplineProcedure: disciplineProcedureText,
+        
+        libraryServiceRules: libraryServiceRulesText,
+        libraryRightsDuties: libraryRightsDutiesText,
+        readersRightsDuties: readersRightsDutiesText,
+        
+        encouragement: encouragementText,
+        scholarships: scholarshipsText,
+        exchangePrograms: exchangeProgramsText,
+        studentLoan: studentLoanText,
+        socialSupport: socialSupportText,
+        
+        credits: creditsText,
+        concepts: conceptsText
+      };
 
-    saveField("examRulesText", examRulesText);
-    saveField("theoreticalCriteriaText", theoreticalCriteriaText);
-    saveField("practicalCriteriaText", practicalCriteriaText);
-    saveField("practicalTasksText", practicalTasksText);
-    saveField("practiceOrganizationText", practiceOrganizationText);
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    saveField("changeSpecialtyText", changeSpecialtyText);
-    saveField("temporarySuspensionText", temporarySuspensionText);
-    saveField("institutionExpulsionText", institutionExpulsionText);
-    saveField("reinstatementText", reinstatementText);
+      const result = await response.json();
 
-    saveField("rightsDutiesText", rightsDutiesText);
-    saveField("disciplineRespText", disciplineRespText);
-    saveField("warningCasesText", warningCasesText);
-    saveField("reprimandCasesText", reprimandCasesText);
-    saveField("severeReprimandCasesText", severeReprimandCasesText);
-    saveField("expulsionCasesText", expulsionCasesText);
-    saveField("disciplineProcedureText", disciplineProcedureText);
-    saveField("libraryServiceRulesText", libraryServiceRulesText);
-    saveField("libraryRightsDutiesText", libraryRightsDutiesText);
-    saveField("readersRightsDutiesText", readersRightsDutiesText);
-    saveField("encouragementText", encouragementText);
-    saveField("scholarshipsText", scholarshipsText);
-    saveField("exchangeProgramsText", exchangeProgramsText);
-    saveField("studentLoanText", studentLoanText);
-    saveField("socialSupportText", socialSupportText);
-    saveField("creditsText", creditsText);
-    saveField("conceptsText", conceptsText);
-
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+      if (result.success) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+        console.log("✅ Saxlanıldı:", result.message);
+      } else {
+        alert("❌ Xəta baş verdi!");
+      }
+    } catch (error) {
+      console.error("❌ Saxlama xətası:", error);
+      alert("❌ Bağlantı xətası! Backend işləyir?");
+    }
   };
 
   if (!isLogged) {
@@ -242,8 +250,7 @@ export default function AdminPage() {
     <section className="admin-wrapper">
       <h2 className="admin-title">Admin panel</h2>
       <p className="admin-note">
-        Bütün bölmə mətnlərini buradan düzəldə bilərsən. Boş sahə üçün
-        localStorage təmizlənəcək və saytda default mətn görünəcək.
+        Bütün bölmə mətnlərini buradan düzəldə bilərsən. Məlumatlar PostgreSQL database-də saxlanılır.
       </p>
 
       <div className="admin-form">
@@ -307,7 +314,6 @@ export default function AdminPage() {
           />
         </div>
 
-        {/* Qiymətləndirmə və imtahan blokları */}
         <div className="admin-group">
           <label className="admin-label">
             Mühazirə dərslərində iştirak və tematik tapşırıqlar
@@ -402,7 +408,6 @@ export default function AdminPage() {
           />
         </div>
 
-        {/* Tələbə status dəyişikliyi blokları */}
         <div className="admin-group">
           <label className="admin-label">
             Təhsil müəssisəsinin / ixtisasın / təhsilalma formasının dəyişdirilməsi
@@ -451,7 +456,6 @@ export default function AdminPage() {
           />
         </div>
 
-        {/* Qalan əvvəlki bölmələr */}
         <div className="admin-group">
           <label className="admin-label">Tələbənin hüquq və vəzifələri</label>
           <textarea
