@@ -3,11 +3,13 @@ import { useUniversity } from "@/contexts/UniversityContext";
 
 export default function ChangeSpecialty() {
   const data = useUniversity();
-  
+
   return (
     <div className="section">
-      <h2>Təhsil müəssisəsinin / ixtisasın / təhsilalma formasının dəyişdirilməsi</h2>
-      <p>{data.studentOrientedSystem || "Default mətn..."}</p>
+      <h2>İxtisas / təhsil forması dəyişikliyi</h2>
+      <div className="section-content">
+        <p style={{ whiteSpace: "pre-wrap" }}>{data.changeSpecialty || "Default mətn..."}</p>
+      </div>
     </div>
   );
 }

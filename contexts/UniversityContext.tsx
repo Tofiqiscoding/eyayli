@@ -83,7 +83,7 @@ export function UniversityProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // API-dən məlumat yüklə
-    fetch("http://localhost:5000/api/university")
+    fetch("http://localhost:5013/api/university")
       .then((res) => res.json())
       .then((apiData) => {
         setData({
